@@ -1,0 +1,737 @@
+@import 'tailwindcss';
+
+@source '../views/**/*.blade.php';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Barlow', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Barlow Condensed', 'Barlow', ui-sans-serif, system-ui, sans-serif;
+
+    --color-primary: #103782;
+    --color-primary-hover: #0c2d66;
+    --color-accent: #5a8fc9;
+    --color-accent-hover: #4a7db5;
+    --color-surface: #f3f6fa;
+    --color-surface-alt: #ffffff;
+    --color-surface-muted: #eef2f8;
+    --color-text: #1a1a1a;
+    --color-text-muted: #4a5568;
+    --color-border: #d5dde8;
+    --color-silver: #c5cdd8;
+    --color-silver-light: #e8ecf1;
+    --color-silver-dark: #a3aebc;
+    --color-silver-muted: #d8dee6;
+    --color-warm: #e5a820;
+    --color-warm-hover: #c99218;
+    --pattern-stripe-hero: rgb(197 205 216 / 0.08);
+    --pattern-stripe-light: rgb(16 55 130 / 0.045);
+    --pattern-stripe-subtle: rgb(16 55 130 / 0.03);
+}
+
+@layer base {
+    body {
+        @apply bg-surface text-text font-sans antialiased;
+    }
+
+    img {
+        @apply rounded-none;
+    }
+}
+
+@layer components {
+    /* Tipográfia – asztali */
+    .heading-1 {
+        @apply font-display text-4xl font-bold uppercase leading-tight tracking-wide text-primary lg:text-5xl;
+    }
+
+    .heading-2 {
+        @apply font-display text-3xl font-semibold leading-snug tracking-wide text-primary;
+    }
+
+    .heading-3 {
+        @apply font-display text-xl font-semibold tracking-wide text-primary;
+    }
+
+    .text-lead {
+        @apply text-lg leading-relaxed text-text-muted;
+    }
+
+    .text-body {
+        @apply text-base leading-relaxed text-text;
+    }
+
+    /* Gombok */
+    .btn {
+        @apply inline-flex items-center justify-center rounded-none px-6 py-3 text-base font-medium transition-colors duration-200;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center rounded-none px-6 py-3 text-base font-medium transition-all duration-200 bg-primary text-white hover:bg-primary-hover hover:shadow-md;
+    }
+
+    .btn-accent {
+        @apply inline-flex items-center justify-center rounded-none px-6 py-3 text-base font-medium transition-all duration-200 bg-warm text-primary hover:bg-warm-hover hover:text-white hover:shadow-md;
+    }
+
+    .btn-outline {
+        @apply inline-flex items-center justify-center rounded-none px-6 py-3 text-base font-medium transition-all duration-200 border-2 border-primary text-primary hover:bg-primary hover:text-white;
+    }
+
+    .btn-sm {
+        @apply px-4 py-2 text-sm;
+    }
+
+    /* Űrlap */
+    .form-label {
+        @apply block text-sm font-medium text-primary;
+    }
+
+    .form-input {
+        @apply mt-1 w-full rounded-none border border-border bg-surface-alt px-4 py-3 text-base leading-relaxed text-text focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary;
+    }
+
+    .form-input--error {
+        @apply border-red-600 focus:border-red-600 focus:ring-red-600;
+    }
+
+    .form-error {
+        @apply mt-1 text-sm text-red-600;
+    }
+
+    .form-honeypot {
+        @apply absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0;
+    }
+
+    .form-alert {
+        @apply border p-4 text-sm;
+    }
+
+    .form-alert--success {
+        @apply border-primary bg-surface-muted text-primary;
+    }
+
+    .form-alert--error {
+        @apply border-red-600 bg-red-50 text-red-800;
+    }
+
+    /* Navigáció */
+    .site-header {
+        @apply sticky top-0 z-50 border-b border-border bg-surface-alt transition-shadow duration-200;
+    }
+
+    .site-header--scrolled {
+        @apply shadow-md;
+    }
+
+    .nav-link {
+        @apply relative text-base font-medium text-text transition-colors duration-200 hover:text-primary;
+    }
+
+    .nav-link-active {
+        @apply font-semibold text-primary;
+    }
+
+    .nav-link-active::after {
+        content: '';
+        @apply absolute -bottom-1 left-0 h-0.5 w-full bg-primary;
+    }
+
+    nav .btn-primary::after {
+        content: none;
+    }
+
+    /* Szekciók */
+    .section {
+        @apply relative py-16;
+    }
+
+    .section-alt {
+        @apply relative py-16 bg-surface-muted;
+        background-image: repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 18px,
+            var(--pattern-stripe-light) 18px,
+            var(--pattern-stripe-light) 19px
+        );
+    }
+
+    .section.bg-surface-alt {
+        background-color: var(--color-surface-alt);
+        background-image: repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 18px,
+            var(--pattern-stripe-subtle) 18px,
+            var(--pattern-stripe-subtle) 19px
+        );
+    }
+
+    .section--compact {
+        @apply py-8 md:py-10 lg:py-8;
+    }
+
+    .section--tight-top {
+        @apply pt-8 lg:pt-10;
+    }
+
+    /* Halvány szekcióháttér – ipari fotók (csak sima .section szekciókon, minta nélkül) */
+    .section-bg:not(.section-alt):not(.bg-surface-alt) {
+        @apply isolate overflow-hidden;
+    }
+
+    .section-alt.section-bg .section-bg__visual,
+    .section.bg-surface-alt.section-bg .section-bg__visual {
+        @apply hidden;
+    }
+
+    .section-bg:not(.section-alt):not(.bg-surface-alt) > .container-site {
+        @apply relative z-10;
+    }
+
+    .section-bg__visual {
+        @apply pointer-events-none absolute inset-0 z-0;
+    }
+
+    .section-bg__visual::before {
+        content: '';
+        position: absolute;
+        inset: -8%;
+        background-image: var(--section-bg-image);
+        background-size: cover;
+        background-position: var(--section-bg-position, 100% 55%);
+        background-repeat: no-repeat;
+        opacity: var(--section-bg-opacity, 0.1);
+        filter: grayscale(1) contrast(1.08) brightness(1.04);
+    }
+
+    .section-bg__visual::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            90deg,
+            var(--section-bg-fade) 0%,
+            var(--section-bg-fade) 36%,
+            color-mix(in srgb, var(--section-bg-fade) 70%, transparent) 56%,
+            transparent 78%
+        );
+    }
+
+    .section-bg__visual--left::after {
+        background: linear-gradient(
+            270deg,
+            var(--section-bg-fade) 0%,
+            var(--section-bg-fade) 36%,
+            color-mix(in srgb, var(--section-bg-fade) 70%, transparent) 56%,
+            transparent 78%
+        );
+    }
+
+    .section-bg__visual--center::before {
+        inset: -5%;
+        opacity: var(--section-bg-opacity, 0.08);
+    }
+
+    .section-bg__visual--center::after {
+        background: linear-gradient(
+            to bottom,
+            var(--section-bg-fade) 0%,
+            color-mix(in srgb, var(--section-bg-fade) 50%, transparent) 30%,
+            color-mix(in srgb, var(--section-bg-fade) 45%, transparent) 70%,
+            var(--section-bg-fade) 100%
+        );
+    }
+
+    .container-site {
+        @apply mx-auto max-w-6xl px-6;
+    }
+
+    .deco-bar {
+        @apply mb-6 h-1 w-12 bg-primary;
+    }
+
+    .deco-bar--center {
+        @apply mx-auto;
+    }
+
+    .section-header {
+        @apply text-center;
+    }
+
+    .section-header .deco-bar {
+        @apply mx-auto;
+    }
+
+    .info-badges {
+        @apply mt-6 flex flex-wrap gap-3;
+    }
+
+    .info-badge {
+        @apply inline-flex items-center border border-border bg-surface-alt px-4 py-2 text-sm font-medium text-primary;
+    }
+
+    .reveal {
+        @apply translate-y-4 opacity-0 transition duration-700 ease-out;
+    }
+
+    .reveal--visible {
+        @apply translate-y-0 opacity-100;
+    }
+
+    /* Kártyák */
+    .card {
+        @apply overflow-hidden rounded-none border border-border bg-surface-alt shadow-none transition-all duration-200 hover:border-primary hover:shadow-md;
+    }
+
+    .card .deco-frame {
+        @apply m-0 w-full max-w-none;
+    }
+
+    .card .deco-frame__media {
+        @apply aspect-[16/9] overflow-hidden border-0 border-b border-border;
+    }
+
+    .card .deco-frame__img {
+        @apply block h-full w-full object-cover object-center;
+    }
+
+    .card-body {
+        @apply p-6;
+    }
+
+    /* Szolgáltatás csempék */
+    .service-tiles {
+        @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
+    }
+
+    .service-tile {
+        @apply relative flex aspect-[16/10] flex-col justify-end overflow-hidden border border-border bg-surface-alt transition-all duration-200 hover:border-primary hover:shadow-md;
+    }
+
+    .service-tile__media {
+        @apply absolute inset-0;
+    }
+
+    .service-tile__img {
+        @apply block h-full w-full object-cover object-center transition-transform duration-500;
+    }
+
+    .service-tile:hover .service-tile__img {
+        @apply scale-105;
+    }
+
+    .service-tile__placeholder {
+        @apply block h-full w-full bg-gradient-to-br from-silver-light to-silver-muted;
+    }
+
+    .service-tile__scrim {
+        @apply absolute inset-0;
+        background: linear-gradient(
+            to top,
+            rgb(8 28 61 / 0.92) 0%,
+            rgb(8 28 61 / 0.72) 38%,
+            rgb(8 28 61 / 0.2) 68%,
+            transparent 100%
+        );
+    }
+
+    .service-tile__body {
+        @apply relative z-10 flex flex-col p-5;
+    }
+
+    .service-tile__title {
+        @apply font-display text-lg font-semibold tracking-wide text-white;
+    }
+
+    .service-tile__text {
+        @apply mt-2 flex-1 text-sm leading-relaxed text-white/90;
+    }
+
+    .service-tile__link {
+        @apply mt-4 text-sm font-medium text-white underline decoration-white/50 underline-offset-2;
+    }
+
+    .service-tile:hover .service-tile__link {
+        @apply decoration-white;
+    }
+
+    /* Rólunk oldal */
+    .about-panel {
+        @apply border border-border bg-surface-alt p-6 md:p-8;
+    }
+
+    .about-benefits {
+        @apply mt-6 grid gap-4 sm:grid-cols-2;
+    }
+
+    .about-benefit {
+        @apply border border-border border-l-4 border-l-primary bg-surface p-4 transition-colors duration-200 hover:border-primary;
+    }
+
+    /* Szolgáltatás áttekintő csempék */
+    .service-overview {
+        @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-4;
+    }
+
+    .service-overview__item {
+        @apply flex h-full flex-col border border-border bg-surface-alt p-5 transition-all duration-200 hover:border-primary hover:bg-white hover:shadow-md;
+    }
+
+    .service-overview__title {
+        @apply font-display text-base font-semibold text-primary;
+    }
+
+    .service-overview__text {
+        @apply mt-2 flex-1 text-sm leading-relaxed text-text-muted;
+    }
+
+    .service-overview__link {
+        @apply mt-4 text-sm font-medium text-primary;
+    }
+
+    .contact-panel {
+        @apply border border-border bg-surface-alt p-6 md:p-8;
+    }
+
+    .contact-panel--compact {
+        @apply p-5 md:p-6;
+    }
+
+    .contact-list {
+        @apply mt-5 space-y-3;
+    }
+
+    .contact-list__item {
+        @apply flex items-start gap-3;
+    }
+
+    .contact-list__icon {
+        @apply flex h-9 w-9 shrink-0 items-center justify-center bg-surface-muted text-primary;
+    }
+
+    .contact-list__icon-img {
+        @apply h-5 w-5 object-contain;
+    }
+
+    .contact-list__body {
+        @apply min-w-0 pt-0.5 text-sm leading-snug;
+    }
+
+    .contact-list__label {
+        @apply block text-xs font-semibold uppercase tracking-wide text-primary;
+    }
+
+    .contact-list__value {
+        @apply mt-0.5 text-text-muted;
+    }
+
+    .contact-list__value a {
+        @apply text-primary hover:underline;
+    }
+
+    .faq-grid {
+        @apply grid gap-4 sm:grid-cols-2 lg:gap-6;
+    }
+
+    .faq-card {
+        @apply flex h-full flex-col border border-border bg-surface-alt p-5 transition-all duration-200 hover:border-primary hover:shadow-md md:p-6;
+    }
+
+    .faq-card__question {
+        @apply font-display text-base font-semibold leading-snug text-primary md:text-lg;
+    }
+
+    .faq-card__answer {
+        @apply mt-3 flex-1 text-sm leading-relaxed text-text-muted;
+    }
+
+    .contact-highlight {
+        @apply border border-primary border-l-4 bg-surface-muted p-6;
+    }
+
+    .contact-map {
+        @apply overflow-hidden border border-border bg-surface-alt;
+    }
+
+    .contact-map--aside {
+        @apply flex min-h-72 flex-col lg:min-h-[22rem];
+    }
+
+    .contact-map__embed {
+        @apply block h-72 w-full border-0 sm:h-80 md:h-96;
+    }
+
+    .contact-map--aside .contact-map__embed {
+        @apply flex-1 lg:h-auto lg:min-h-[22rem];
+    }
+
+    .footer-logo {
+        @apply h-10 w-auto brightness-0 invert;
+    }
+
+    .footer-phone {
+        @apply mt-3 text-xl font-semibold text-white hover:underline;
+    }
+
+    .about-benefit__title {
+        @apply font-display text-sm font-semibold text-primary;
+    }
+
+    .about-benefit__text {
+        @apply mt-2 text-sm leading-relaxed text-text-muted;
+    }
+
+    .site-logo {
+        @apply h-11 w-auto md:h-12;
+    }
+
+    .logo-plain {
+        @apply block h-auto w-full max-w-[12rem] md:max-w-[14rem];
+    }
+
+    /* Ezüst díszítő keret képek mögött */
+    .deco-frame {
+        @apply relative w-full max-w-md;
+    }
+
+    .deco-frame--wide {
+        @apply max-w-none;
+    }
+
+    .deco-frame--hero {
+        @apply ml-auto max-w-sm md:max-w-md;
+    }
+
+    .deco-frame__accent {
+        @apply absolute -bottom-4 -right-4 z-0 h-full w-full border border-silver-dark bg-silver;
+    }
+
+    .deco-frame--left .deco-frame__accent {
+        right: auto;
+        left: -1rem;
+    }
+
+    .deco-frame__media {
+        @apply relative z-10 aspect-[16/10] overflow-hidden border border-border bg-surface-alt;
+    }
+
+    .deco-frame--flat .deco-frame__media {
+        @apply border-0;
+    }
+
+    .deco-frame--contain .deco-frame__media {
+        @apply aspect-auto;
+    }
+
+    .deco-frame__img {
+        @apply block h-full w-full rounded-none object-cover object-center;
+    }
+
+    .deco-frame__placeholder {
+        @apply aspect-[16/10] bg-gradient-to-br from-silver-light to-silver-muted;
+    }
+
+    .deco-frame--contain .deco-frame__img {
+        @apply aspect-[4/3] object-contain p-8;
+    }
+
+    .mobile-nav-panel {
+        @apply rounded-none border border-border bg-surface-alt p-4 shadow-lg;
+    }
+
+    /* Hero banner */
+    .hero-banner {
+        @apply relative flex flex-col overflow-hidden;
+    }
+
+    .hero-banner__bg {
+        @apply pointer-events-none absolute inset-0 z-0 hidden lg:block;
+        background-image:
+            repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 18px,
+                var(--pattern-stripe-hero) 18px,
+                var(--pattern-stripe-hero) 19px
+            ),
+            linear-gradient(160deg, var(--color-primary) 0%, #0a234f 55%, #081c3d 100%);
+    }
+
+    .hero-banner__panel {
+        @apply relative z-20 px-6 py-10 md:px-10 md:py-12;
+        background-image:
+            repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 18px,
+                var(--pattern-stripe-hero) 18px,
+                var(--pattern-stripe-hero) 19px
+            ),
+            linear-gradient(160deg, var(--color-primary) 0%, #0a234f 55%, #081c3d 100%);
+        border-bottom: 4px solid transparent;
+        border-image: linear-gradient(90deg, var(--color-silver), var(--color-silver-dark)) 1;
+    }
+
+    .hero-banner__inner {
+        @apply max-w-lg;
+    }
+
+    .hero-banner__panel .heading-1 {
+        @apply !text-white;
+    }
+
+    .hero-banner__panel .text-lead {
+        @apply !text-white/90;
+    }
+
+    .hero-banner__panel .btn-outline {
+        @apply !border-white !text-white hover:!bg-white hover:!text-primary;
+    }
+
+    .hero-banner__panel .info-badge {
+        @apply border-white/30 bg-white/10 text-white;
+    }
+
+    .hero-banner__image {
+        @apply relative z-10 block w-full rounded-none;
+    }
+
+    .hero-banner__image--desktop {
+        @apply hidden;
+    }
+
+    .hero-banner__image--mobile {
+        @apply h-72 object-cover object-center sm:h-80 md:h-96 lg:hidden;
+    }
+}
+
+/* Asztali: hero-1 teljes szélességben, minta mögötte, szöveg balra */
+@media (min-width: 1024px) {
+    @layer components {
+        .hero-banner {
+            @apply block;
+        }
+
+        .hero-banner__image--desktop {
+            @apply relative z-10 block h-auto w-full;
+            animation: hero-slide-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .hero-banner__panel {
+            @apply absolute inset-y-0 left-0 flex w-[46%] items-center border-b-0 bg-transparent py-0 pr-8;
+            padding-left: max(1.5rem, calc((100% - 72rem) / 2 + 1.5rem));
+            background-image: none;
+        }
+    }
+}
+
+@keyframes hero-slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(6rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    @layer components {
+        .hero-banner__image--desktop {
+            animation: none;
+        }
+
+        .reveal {
+            @apply translate-y-0 opacity-100;
+        }
+
+        .service-tile:hover .service-tile__img {
+            transform: none;
+        }
+
+        .section-bg__visual::before {
+            opacity: 0.04;
+        }
+    }
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+    @layer components {
+        .heading-1 {
+            @apply text-3xl;
+        }
+
+        .heading-2 {
+            @apply text-2xl;
+        }
+
+        .heading-3 {
+            @apply text-lg;
+        }
+
+        .section {
+            @apply py-12;
+        }
+
+        .deco-frame__accent {
+            @apply -bottom-3 -right-3;
+        }
+
+        .deco-frame--left .deco-frame__accent {
+            left: -0.75rem;
+        }
+    }
+}
+
+/* Telefon */
+@media (max-width: 767px) {
+    @layer components {
+        .heading-1 {
+            @apply text-2xl;
+        }
+
+        .heading-2 {
+            @apply text-xl;
+        }
+
+        .heading-3 {
+            @apply text-base;
+        }
+
+        .text-lead {
+            @apply text-base;
+        }
+
+        .btn,
+        .btn-primary,
+        .btn-accent,
+        .btn-outline {
+            @apply px-5 py-2.5 text-sm;
+        }
+
+        .section {
+            @apply py-10;
+        }
+
+        .section-bg__visual::before {
+            opacity: calc(var(--section-bg-opacity, 0.1) * 0.55);
+        }
+
+        .container-site {
+            @apply px-4;
+        }
+
+        .deco-frame__accent {
+            @apply -bottom-2 -right-2;
+        }
+
+        .deco-frame--left .deco-frame__accent {
+            left: -0.5rem;
+        }
+    }
+}
