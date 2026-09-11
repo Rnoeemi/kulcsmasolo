@@ -1,5 +1,5 @@
 <footer class="border-t border-primary-hover bg-primary text-white">
-    <div class="container-site py-10">
+    <div class="container-site py-8">
         <div class="grid gap-8 md:grid-cols-3">
             <div>
                 <img
@@ -47,8 +47,56 @@
             </nav>
         </div>
 
-        <p class="mt-8 border-t border-white/20 pt-6 text-center text-sm text-white/60">
-            &copy; {{ date('Y') }} {{ config('seo.brand') }}. Minden jog fenntartva.
-        </p>
+        <div class="footer-sub footer-grant" aria-label="Pályázati támogatás">
+            <div class="footer-grant__logos">
+                @if (file_exists(storage_path('app/public/images/dsp.png')))
+                    <a href="{{ route('palyazat') }}" class="footer-grant__logo-link" title="Pályázati tájékoztató">
+                        <img
+                            src="{{ asset('storage/images/dsp.png') }}"
+                            alt="Demján Sándor Program"
+                            class="footer-grant__logo"
+                            width="240"
+                            height="96"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </a>
+                @else
+                    <a href="{{ route('palyazat') }}" class="footer-grant__logo-link footer-grant__logo-placeholder" title="Pályázati tájékoztató">DSP</a>
+                @endif
+                @if (file_exists(storage_path('app/public/images/neum.png')))
+                    <a href="{{ route('palyazat') }}" class="footer-grant__logo-link" title="Pályázati tájékoztató">
+                        <img
+                            src="{{ asset('storage/images/neum.png') }}"
+                            alt="NEUM"
+                            class="footer-grant__logo"
+                            width="240"
+                            height="96"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </a>
+                @else
+                    <a href="{{ route('palyazat') }}" class="footer-grant__logo-link footer-grant__logo-placeholder" title="Pályázati tájékoztató">NEUM</a>
+                @endif
+            </div>
+            <p class="footer-grant__text">
+                A weboldal a Demján Sándor Program keretében és támogatásával valósult meg.
+            </p>
+        </div>
+
+        <div class="footer-sub footer-legal" aria-label="Jogi információk">
+            <nav class="footer-legal__nav" aria-label="Jogi dokumentumok">
+                <a href="{{ route('impresszum') }}" class="footer-legal__link">Impresszum</a>
+                <span class="footer-legal__sep" aria-hidden="true">|</span>
+                <a href="{{ route('adatvedelem') }}" class="footer-legal__link">Adatvédelmi tájékoztató</a>
+            </nav>
+            <p class="footer-legal__credits">
+                Készítette: Auri Consulting Tanácsadó KFT., WHATTHEBRAND Studio KFT. és PROMERA MENEDZSMENT KFT.
+            </p>
+            <p class="footer-legal__copy">
+                &copy; {{ date('Y') }} {{ config('seo.brand') }}. Minden jog fenntartva.
+            </p>
+        </div>
     </div>
 </footer>

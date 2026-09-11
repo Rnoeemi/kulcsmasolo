@@ -6,6 +6,9 @@
 
     <title>@yield('title', config('seo.brand'))</title>
 
+    <link rel="icon" href="{{ asset('storage/images/fav.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('storage/images/fav.png') }}">
+
     @include('partials.seo')
     @include('partials.structured-data')
 
@@ -19,5 +22,6 @@
     </main>
 
     @include('partials.footer')
+    @include('partials.cookie-banner')
 </body>
 </html>

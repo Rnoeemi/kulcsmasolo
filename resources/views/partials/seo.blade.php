@@ -4,7 +4,8 @@
     $pageTitle = trim($__env->yieldContent('title'));
     $fullTitle = $pageTitle !== '' ? $pageTitle : $brand;
     $description = trim($__env->yieldContent('meta_description')) ?: config('seo.default_description');
-    $canonical = trim($__env->yieldContent('canonical')) ?: url()->current();
+    $canonicalPath = request()->getPathInfo();
+    $canonical = trim($__env->yieldContent('canonical')) ?: $siteUrl . ($canonicalPath === '/' ? '' : $canonicalPath);
     $ogImage = $siteUrl . (trim($__env->yieldContent('og_image')) ?: config('seo.og_image'));
     $robots = trim($__env->yieldContent('robots')) ?: 'index, follow';
 @endphp

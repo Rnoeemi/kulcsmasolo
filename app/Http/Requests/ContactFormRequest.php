@@ -20,6 +20,7 @@ class ContactFormRequest extends FormRequest
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email', 'max:255'],
             'message' => ['required', 'string', 'max:5000'],
+            'privacy' => ['accepted'],
         ];
     }
 
@@ -34,6 +35,7 @@ class ContactFormRequest extends FormRequest
             'email.email' => 'Kérjük, érvényes e-mail címet adjon meg.',
             'message.required' => 'Kérjük, írja le üzenetét.',
             'message.max' => 'Az üzenet legfeljebb 5000 karakter lehet.',
+            'privacy.accepted' => 'Az üzenet küldéséhez el kell fogadnia az adatvédelmi tájékoztatót.',
         ];
     }
 }

@@ -42,31 +42,4 @@ return [
         'saturday' => ['open' => '08:00', 'close' => '12:00'],
     ],
 
-    'faqs' => [
-        [
-            'question' => 'Mennyi idő egy kulcsmásolás?',
-            'answer' => 'A leggyakoribb lakás- és autókulcsok másolása gyakran helyben, rövid várakozással elkészül. Chipkulcsoknál és speciális kulcsoknál az idő a típustól függ – üzletünkben felmérjük és tájékoztatjuk.',
-        ],
-        [
-            'question' => 'Másolható chipkulcs és autókulcs is?',
-            'answer' => 'Igen, sok chipkulcs és autókulcs másolható vagy pótolható. A lehetőségeket a kulcs típusától és az autó/ajtó rendszerétől függően egyeztetjük a helyszínen.',
-        ],
-        [
-            'question' => 'Hol található az üzlet Dunaújvárosban?',
-            'answer' => 'A Piactéri Kulcsmásoló a dunaújvárosi piactér szolgáltatóházában található (szolgáltatóház 1, 2400 Dunaújváros). Az oldal alján a térképen is megtalálja pontos helyünket.',
-        ],
-        [
-            'question' => 'Mikor van nyitva az üzlet?',
-            'answer' => 'Hétfőtől péntekig 8:00 és 17:00 között, szombaton 8:00 és 12:00 között várjuk ügyfeleinket. Vasárnap és ünnepnapokon zárva vagyunk.',
-        ],
-        [
-            'question' => 'Vállalnak cipőjavítást is?',
-            'answer' => 'Igen, talpbetét cserét, sarokjavítást, cipőzár javítást és egyéb cipőjavítási munkákat is végzünk Dunaújvárosban, tartós anyagokkal.',
-        ],
-        [
-            'question' => 'Hogyan tudok érdeklődni vagy időpontot egyeztetni?',
-            'answer' => 'Telefonon, e-mailben, a kapcsolatfelvételi űrlapon, Facebook oldalunkon vagy személyesen a dunaújvárosi üzletben érhet el minket.',
-        ],
-    ],
-
 ];

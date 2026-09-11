@@ -104,6 +104,22 @@
         @apply absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0;
     }
 
+    .form-check {
+        @apply flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-text-muted;
+    }
+
+    .form-check__input {
+        @apply mt-0.5 size-4 shrink-0 rounded-none border border-border text-primary accent-primary focus:ring-1 focus:ring-primary;
+    }
+
+    .form-check__text {
+        @apply select-none;
+    }
+
+    .form-check__link {
+        @apply font-medium text-primary underline decoration-primary/30 underline-offset-2 hover:decoration-primary;
+    }
+
     .form-alert {
         @apply border p-4 text-sm;
     }
@@ -363,6 +379,54 @@
         @apply border border-border bg-surface-alt p-6 md:p-8;
     }
 
+    .legal-doc {
+        @apply space-y-8 text-base leading-relaxed text-text-muted;
+    }
+
+    .legal-doc__meta {
+        @apply text-sm text-text-muted;
+    }
+
+    .legal-doc__intro {
+        @apply leading-relaxed;
+    }
+
+    .legal-doc__section {
+        @apply space-y-3;
+    }
+
+    .legal-doc__section-title {
+        @apply font-display text-lg font-semibold text-primary;
+    }
+
+    .legal-doc__list {
+        @apply list-inside list-disc space-y-1 pl-1;
+    }
+
+    .grant-list {
+        @apply my-8 space-y-5 border-y border-border py-8;
+    }
+
+    .grant-list__row {
+        @apply space-y-1;
+    }
+
+    .grant-list__row dt {
+        @apply text-text;
+    }
+
+    .grant-list__row dd {
+        @apply text-base leading-relaxed font-normal text-text-muted;
+    }
+
+    .grant-page__logos {
+        @apply flex flex-wrap items-center justify-center gap-6 pt-2;
+    }
+
+    .grant-page__logo {
+        @apply h-16 w-auto max-w-[13rem] object-contain md:h-[4.5rem] md:max-w-[15rem];
+    }
+
     .about-benefits {
         @apply mt-6 grid gap-4 sm:grid-cols-2;
     }
@@ -432,22 +496,6 @@
         @apply text-primary hover:underline;
     }
 
-    .faq-grid {
-        @apply grid gap-4 sm:grid-cols-2 lg:gap-6;
-    }
-
-    .faq-card {
-        @apply flex h-full flex-col border border-border bg-surface-alt p-5 transition-all duration-200 hover:border-primary hover:shadow-md md:p-6;
-    }
-
-    .faq-card__question {
-        @apply font-display text-base font-semibold leading-snug text-primary md:text-lg;
-    }
-
-    .faq-card__answer {
-        @apply mt-3 flex-1 text-sm leading-relaxed text-text-muted;
-    }
-
     .contact-highlight {
         @apply border border-primary border-l-4 bg-surface-muted p-6;
     }
@@ -474,6 +522,58 @@
 
     .footer-phone {
         @apply mt-3 text-xl font-semibold text-white hover:underline;
+    }
+
+    .footer-sub {
+        @apply mt-5 border-t border-white/20 pt-4;
+    }
+
+    .footer-grant {
+        @apply flex flex-col items-center gap-3 text-center sm:flex-row sm:justify-center sm:gap-6;
+    }
+
+    .footer-grant__logos {
+        @apply flex shrink-0 items-center justify-center gap-5;
+    }
+
+    .footer-grant__logo {
+        @apply h-16 w-auto max-w-[13rem] object-contain md:h-[4.5rem] md:max-w-[15rem];
+    }
+
+    .footer-grant__logo-link {
+        @apply shrink-0 opacity-90 transition-opacity hover:opacity-100;
+    }
+
+    .footer-grant__logo-placeholder {
+        @apply border border-white/25 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white/50;
+    }
+
+    .footer-grant__text {
+        @apply max-w-xl text-xs leading-snug text-white/65 sm:text-left;
+    }
+
+    .footer-legal {
+        @apply space-y-2 text-center;
+    }
+
+    .footer-legal__nav {
+        @apply flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs text-white/75;
+    }
+
+    .footer-legal__link {
+        @apply hover:text-white hover:underline;
+    }
+
+    .footer-legal__sep {
+        @apply text-white/35;
+    }
+
+    .footer-legal__credits {
+        @apply text-[0.65rem] leading-snug text-white/55 md:text-xs;
+    }
+
+    .footer-legal__copy {
+        @apply text-[0.65rem] text-white/55 md:text-xs;
     }
 
     .about-benefit__title {
@@ -733,5 +833,43 @@
         .deco-frame--left .deco-frame__accent {
             left: -0.5rem;
         }
+    }
+}
+
+@layer components {
+    .cookie-banner {
+        @apply fixed inset-x-0 bottom-0 z-[60] border-t border-border bg-surface-alt/95 p-4 shadow-[0_-4px_20px_rgb(16_55_130_/_0.08)] backdrop-blur-sm;
+    }
+
+    .cookie-banner__inner {
+        @apply mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between;
+    }
+
+    .cookie-banner__title {
+        @apply text-sm font-semibold text-primary;
+    }
+
+    .cookie-banner__text {
+        @apply mt-1 text-sm leading-relaxed text-text-muted;
+    }
+
+    .cookie-banner__link {
+        @apply text-primary underline decoration-primary/30 underline-offset-2 hover:decoration-primary;
+    }
+
+    .cookie-banner__actions {
+        @apply flex shrink-0 flex-wrap items-center gap-2;
+    }
+
+    .cookie-banner__btn {
+        @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium transition-colors duration-200;
+    }
+
+    .cookie-banner__btn--primary {
+        @apply bg-primary text-white hover:bg-primary-hover;
+    }
+
+    .cookie-banner__btn--ghost {
+        @apply border border-border text-text-muted hover:border-primary hover:text-primary;
     }
 }

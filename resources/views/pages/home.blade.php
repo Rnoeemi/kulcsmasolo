@@ -4,8 +4,6 @@
 @section('meta_description', 'Kulcsmásolás, gravírozás és cipőjavítás Dunaújvárosban. Lakás-, autó- és biztonsági kulcsok, chipek, élezés – gyors, megbízható kiszolgálás a Piactéri Kulcsmásolónál.')
 @section('og_image', '/storage/images/hero-1.png')
 
-@include('partials.faq-schema')
-
 @section('content')
     <section class="hero-banner" aria-label="Bemutatkozás">
         <div class="hero-banner__bg" aria-hidden="true"></div>
@@ -159,8 +157,6 @@
             </div>
         </div>
     </section>
-
-    <x-faq-section class="reveal" centered heading-id="gyik-fooldal-cim" />
 
     <section class="section-alt reveal" aria-labelledby="kapcsolat-cta-cim">
         <div class="container-site section-header">

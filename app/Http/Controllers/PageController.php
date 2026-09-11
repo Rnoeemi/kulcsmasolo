@@ -33,4 +33,19 @@ class PageController extends Controller
     {
         return view('pages.kapcsolat');
     }
+
+    public function impresszum()
+    {
+        return view('pages.impresszum');
+    }
+
+    public function adatvedelem()
+    {
+        return view('pages.adatvedelem');
+    }
+
+    public function palyazat()
+    {
+        return view('pages.palyazat');
+    }
 }

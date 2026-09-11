@@ -3,19 +3,16 @@
 @section('title', 'Kapcsolat Dunaújváros – Elérhetőségek és Nyitvatartás | ' . config('seo.brand'))
 @section('meta_description', 'Kapcsolat – Piactéri Kulcsmásoló, Dunaújváros, szolgáltatóház 1. Tel.: ' . config('seo.phone') . '. Nyitvatartás: hétköznap 8–17, szombat 8–12.')
 
-@include('partials.faq-schema')
-
 @section('content')
     <section class="section section--compact bg-surface-alt" aria-labelledby="kapcsolat-cim">
         <div class="container-site">
-            <div class="grid gap-8 lg:grid-cols-2 lg:items-start">
-                <div>
-                    <div class="deco-bar"></div>
-                    <h1 id="kapcsolat-cim" class="heading-1">Kapcsolat – Piactéri Kulcsmásoló</h1>
-                    <p class="text-lead mt-4">
-                        Kérdése van kulcsmásolással, gravírozással vagy cipőjavítással kapcsolatban? Keressen minket Dunaújvárosban – a {{ config('seo.alternate_name') }} üzletben szívesen segítünk.
-                    </p>
-                </div>
+            <div class="deco-bar"></div>
+            <h1 id="kapcsolat-cim" class="heading-1">Kapcsolat – Piactéri Kulcsmásoló</h1>
+
+            <div class="mt-8 grid gap-8 lg:grid-cols-2 lg:items-start">
+                <p class="text-lead">
+                    Kérdése van kulcsmásolással, gravírozással vagy cipőjavítással kapcsolatban? Keressen minket Dunaújvárosban – a {{ config('seo.alternate_name') }} üzletben szívesen segítünk.
+                </p>
 
                 <div class="contact-highlight">
                     <h2 class="heading-3">Nyitvatartás</h2>
@@ -56,7 +53,7 @@
                                     <div class="contact-list__body">
                                         <span class="contact-list__label">Telefon</span>
                                         <span class="contact-list__value">
-                                            <a href="tel:{{ preg_replace('/\s+/', '', config('seo.phone')) }}">{{ config('seo.phone') }}</a>
+                                            <a href="tel:{{ preg_replace('/\s+/', '', config('seo.phone')) }}" class="text-primary hover:underline">{{ config('seo.phone') }}</a>
                                         </span>
                                     </div>
                                 </li>
@@ -168,12 +165,30 @@
                                 <p class="form-error">{{ $message }}</p>
                             @enderror
                         </div>
+                        <div>
+                            <label class="form-check" for="privacy">
+                                <input
+                                    type="checkbox"
+                                    id="privacy"
+                                    name="privacy"
+                                    value="1"
+                                    class="form-check__input"
+                                    @checked(old('privacy'))
+                                    required
+                                >
+                                <span class="form-check__text">
+                                    Elfogadom az
+                                    <a href="{{ route('adatvedelem') }}" class="form-check__link" target="_blank" rel="noopener noreferrer">adatvédelmi tájékoztatót</a>.
+                                </span>
+                            </label>
+                            @error('privacy')
+                                <p class="form-error">{{ $message }}</p>
+                            @enderror
+                        </div>
                         <button type="submit" class="btn-primary w-full sm:w-auto">Küldés</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
-
-    <x-faq-section class="reveal" centered heading-id="gyik-kapcsolat-cim" />
 @endsection
